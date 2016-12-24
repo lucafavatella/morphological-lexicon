@@ -13,6 +13,8 @@ add_dodson: \
 		--missing $(word 3,$^) \
 		--twice $(word 4,$^) \
 		--override dodson-entry \
+		--output_missing missing_dodson.txt.add_dodson \
+		--output_twice twice_dodson.txt.add_dodson \
 		< $<
 
 data-cleanup/dodson-lexicon/dodson_lexicon.txt: data-cleanup/dodson-lexicon/dodson.csv | scripts/beta_to_unicode.py

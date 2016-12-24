@@ -1,0 +1,8 @@
+#!/bin/sh
+
+git purge -ff . || true
+
+pip3 install 'regex==2016.11.21' || exit 1 ## For `beta_to_unicode` usage in `clean_dodson.py` - see https://github.com/cltk/cltk/blob/v0.1.46/cltk/corpus/greek/beta_to_unicode.py#L3
+pip3 install -r requirements.txt || exit 1 ## For `morphgnt.utils` usage in `add_dodson.py`.
+
+make add_dodson > lexemes.yaml.add_dodson || exit 1

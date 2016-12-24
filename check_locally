@@ -1,0 +1,19 @@
+#!/bin/sh
+
+file lexemes.yaml lexemes.yaml.add_dodson || exit 1
+diff -u lexemes.yaml lexemes.yaml.add_dodson || true
+
+LC_CTYPE=C file missing_dodson.txt missing_dodson.txt.add_dodson || exit 1
+## XXX Put LC_CTYPE=C in front of tr too?
+tr -d '[:blank:]' < missing_dodson.txt.add_dodson > missing_dodson.txt.add_dodson.wo_space && \
+    sort missing_dodson.txt.add_dodson.wo_space > missing_dodson.txt.add_dodson.wo_space.sorted || \
+        exit 1
+sort missing_dodson.txt > missing_dodson.txt.sorted || exit 1
+diff missing_dodson.txt.sorted missing_dodson.txt.add_dodson.wo_space.sorted || true
+
+LC_CTYPE=C file twice_dodson.txt twice_dodson.txt.add_dodson || exit 1
+tr -d '[:blank:]' < twice_dodson.txt.add_dodson > twice_dodson.txt.add_dodson.wo_space && \
+    sort twice_dodson.txt.add_dodson.wo_space > twice_dodson.txt.add_dodson.wo_space.sorted || \
+        exit 1
+sort twice_dodson.txt > twice_dodson.txt.sorted || exit 1
+diff twice_dodson.txt.sorted twice_dodson.txt.add_dodson.wo_space.sorted || true
