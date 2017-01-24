@@ -1,2 +1,6 @@
 # words known to be present more than once in Dodson so we can stop complaining about them
 
+μήν/N
+βάτος
+ἄπειμι
+μήν/X
